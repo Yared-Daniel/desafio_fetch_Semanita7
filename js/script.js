@@ -20,7 +20,24 @@ function showData(dataArray) {
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
 
-fetch(DATA_URL) //Funciòn que invoca a la API
-.then(res => res.json()) //Funciòn que transforma la API en JSON
-.then(data => showData(data.students)) //aplicamos mostrar data, especificamente STUDENTS
-.catch(error => console.error('Error al llamar API', error)); //Es para detectar errores en la API
+/*fetch(DATA_URL) //Funcion Fetch - llama API
+  .then(res => res.json()) //Convierenes la API en JSON
+  .then(data => showData(data.students)) //Peticiòn a la DATA mostrar funciòn DATA.STUDENTS
+  .catch(error => console.error("Error al llamar API ", error)) //Para detectar errores
+*/
+
+//Con funciòn asincronica
+  async function GetData(){
+    try {
+      const response = await fetch(DATA_URL);
+    const data = await response.json()
+    showData(data.students)
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  GetData()
+
+  
